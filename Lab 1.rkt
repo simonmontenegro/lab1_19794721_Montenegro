@@ -17,9 +17,16 @@
     (if (null? lista_aux)
         #f
         (if (list? lista_aux)
-            #t
-            #f
+            (if (or (null? (car lista_aux)) (null? (cdr lista_aux)))
+                #f
+                #t
+            )
+           #f
         )
     )
   )
 )
+; |-------------------------------------------------------|
+; |                    ~ Selectores ~                     |
+; |-------------------------------------------------------|
+(define 
