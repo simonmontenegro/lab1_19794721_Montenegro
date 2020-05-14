@@ -1,32 +1,44 @@
 #lang racket
 ; |-------------------------------------------------------|
-; |------------------- ~ TDA ARCHIVO ~ -------------------|
+; |----------------- ~ TDA Repositorio ~ -----------------|
 ; |-------------------------------------------------------|
 ; |                    ~ Constructor ~                    |
 ; |-------------------------------------------------------|
-(define archivo
-  (lambda(nombre_archivo contenido)
-    (list nombre_archivo contenido)
+(define repositorio
+  (lambda(nombre_autor)
+    (list nombre_autor (list ) (list ) (list ) (list ))
   )
 )
 ; |-------------------------------------------------------|
 ; |                    ~ Pertenencia ~                    |
 ; |-------------------------------------------------------|
-(define es_archivo?
-  (lambda(lista_aux)
-    (if (null? lista_aux)
+(define esRepositorio?
+  (lambda(Lista)
+    (if (null? Lista)
         #f
-        (if (list? lista_aux)
-            (if (or (null? (car lista_aux)) (null? (cdr lista_aux)))
-                #f
+        (if (string? (car Lista))
+            (if (and (list? (cadr Lista)) (list? (caddr Lista)) (list? (cadddr Lista)))
                 #t
+                #f
+                )
+            #f
             )
-           #f
         )
     )
   )
-)
+            
 ; |-------------------------------------------------------|
 ; |                    ~ Selectores ~                     |
 ; |-------------------------------------------------------|
-(define 
+(define repositorio_getAutor
+  (lambda (Lista)
+    (if (esRepositorio? Lista)
+        (car Lista)
+        #f
+        )
+    )
+  )
+
+; |-------------------------------------------------------|
+; |                  ~ Modificadores ~                    |
+; |-------------------------------------------------------|
