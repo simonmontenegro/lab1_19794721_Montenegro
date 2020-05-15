@@ -1,43 +1,28 @@
 #lang racket
+(provide (all-defined-out))
+
+(require "Listas.rkt")
+
 ; |-------------------------------------------------------|
-; |----------------- ~ TDA Repositorio ~ -----------------|
+; |-------------------- ~ TDA Index ~ --------------------|
 ; |-------------------------------------------------------|
 ; |                    ~ Constructor ~                    |
 ; |-------------------------------------------------------|
-(define repositorio
-  (lambda(nombre_autor)
-    (list nombre_autor (list ) (list ) (list ) (list ))
+(define (Index . archivo)
+  (if (> (lenLista archivo) 0)
+      #t
+      #f
+      )
   )
-)
+       
 ; |-------------------------------------------------------|
 ; |                    ~ Pertenencia ~                    |
 ; |-------------------------------------------------------|
-(define esRepositorio?
-  (lambda(Lista)
-    (if (null? Lista)
-        #f
-        (if (string? (car Lista))
-            (if (and (list? (cadr Lista)) (list? (caddr Lista)) (list? (cadddr Lista)))
-                #t
-                #f
-                )
-            #f
-            )
-        )
-    )
-  )
-            
+
 ; |-------------------------------------------------------|
 ; |                    ~ Selectores ~                     |
 ; |-------------------------------------------------------|
-(define repositorio_getAutor
-  (lambda (Lista)
-    (if (esRepositorio? Lista)
-        (car Lista)
-        #f
-        )
-    )
-  )
+
 
 ; |-------------------------------------------------------|
 ; |                  ~ Modificadores ~                    |
