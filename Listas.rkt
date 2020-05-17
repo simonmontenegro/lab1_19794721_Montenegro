@@ -63,7 +63,35 @@
     )
   )
 
+(define myAppend
+  (lambda(L1 L2)
+    (if (null? L1)
+        L2
+        (if (null? L2)
+            L1
+            (cons (car L1) (myAppend (cdr L1) L2))
+            )
+        )
+    )
+  )
 
+(define quitarElemento
+  (lambda (L quitar)
+    (define quitarElementoAux
+      (lambda (L quitar Lnueva)
+        (if (null? L)
+          Lnueva
+          (if (equal? (car L) quitar)
+              (quitarElementoAux (cdr L) quitar Lnueva)
+              (quitarElementoAux (cdr L) quitar (cons (car L) Lnueva) )
+              ) 
+          )
+        )
+      )
+    (quitarElementoAux L quitar '( ) )
+      )
+    )
+          
 
 
 

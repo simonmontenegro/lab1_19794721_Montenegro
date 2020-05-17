@@ -53,16 +53,31 @@
     )
   )
          
-
 ; |-------------------------------------------------------|
 ; |                  ~ Modificadores ~                    |
 ; |-------------------------------------------------------|
+(define modificarArchivoIndex
+  (lambda (L eliminar nuevo)
+    (if (esIndex? L)
+        (myAppend (quitarElemento L eliminar) nuevo) 
+        #f
+        )
+    )
+  )
 
 
 
 
 
 
+
+
+
+
+
+
+
+        
 
 
 
