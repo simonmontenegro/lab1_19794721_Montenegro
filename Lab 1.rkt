@@ -8,9 +8,12 @@
 ; |-------------------------------------------------------|
 ; |                    ~ Constructor ~                    |
 ; |-------------------------------------------------------|
-(define (Index . archivo)
+(define (index . archivo)
   (if (> (lenLista archivo) 0)
-      #t
+      (if (esString? archivo)
+          archivo
+          #f
+          )
       #f
       )
   )
@@ -18,12 +21,50 @@
 ; |-------------------------------------------------------|
 ; |                    ~ Pertenencia ~                    |
 ; |-------------------------------------------------------|
-
+(define esIndex?
+  (lambda (L)
+    (if (null? L)
+        #f
+        (if (esString? L)
+            #t
+            #f
+            )
+        )
+    )
+  )
 ; |-------------------------------------------------------|
 ; |                    ~ Selectores ~                     |
 ; |-------------------------------------------------------|
+(define encontrarElemento
+  (lambda (L elemento)
+    (if (esIndex? L)
+        (posicionEnLista L elemento)    
+        #f
+        )
+    )
+  )
 
+(define encontrarElementoEnPosicion
+  (lambda (L posicion)
+    (if (esIndex? L)
+        (elementoEnLista L posicion)
+        #f
+        )
+    )
+  )
+         
 
 ; |-------------------------------------------------------|
 ; |                  ~ Modificadores ~                    |
 ; |-------------------------------------------------------|
+
+
+
+
+
+
+
+
+
+
+         

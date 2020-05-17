@@ -28,5 +28,49 @@
         )
     )
   )
+
+(define posicionEnLista
+  (lambda (Lista elemento)
+    (define posicionEnListaAux
+      (lambda (L elem voyEn)
+        (if (null? L)
+            #f
+            (if (equal? elem (car L))
+                voyEn
+                (posicionEnListaAux (cdr L) elem (+ voyEn 1))
+                )
+            )
+        )
+      )
+    (posicionEnListaAux Lista elemento 1)
+    )
+  )
+
+(define elementoEnLista
+  (lambda (L posicion)
+    (define elementoEnListaAux
+      (lambda (L posicion voyEn)
+        (if (null? L)
+            #f
+            (if (= voyEn posicion)
+                (car L)
+                (elementoEnListaAux (cdr L) posicion (+ voyEn 1))
+                )
+            )
+        )
+      )
+    (elementoEnListaAux L posicion 1)
+    )
+  )
+
+
+
+
+
+
+
+
+
+        
         
         
