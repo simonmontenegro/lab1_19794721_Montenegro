@@ -91,7 +91,20 @@
     (quitarElementoAux L quitar '( ) )
       )
     )
-          
+
+(define agregarElemento
+  (lambda (L agregar)
+    (define agregarElementoAux
+      (lambda (L agregar L2)
+        (if (null? L)
+          (cons agregar L2)
+          (agregarElementoAux (cdr L) agregar (cons (car L) L2))
+          )
+        )
+      )
+    (agregarElementoAux L agregar '( ))
+  )
+)
 
 
 

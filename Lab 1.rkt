@@ -21,7 +21,7 @@
 ; |-------------------------------------------------------|
 ; |                    ~ Pertenencia ~                    |
 ; |-------------------------------------------------------|
-(define esIndex?
+(define index?
   (lambda (L)
     (if (null? L)
         #f
@@ -35,18 +35,18 @@
 ; |-------------------------------------------------------|
 ; |                    ~ Selectores ~                     |
 ; |-------------------------------------------------------|
-(define encontrarElemento
+(define getElemIndex
   (lambda (L elemento)
-    (if (esIndex? L)
+    (if (index? L)
         (posicionEnLista L elemento)    
         #f
         )
     )
   )
 
-(define encontrarElementoEnPosicion
+(define getPosIndex
   (lambda (L posicion)
-    (if (esIndex? L)
+    (if (index? L)
         (elementoEnLista L posicion)
         #f
         )
@@ -56,18 +56,95 @@
 ; |-------------------------------------------------------|
 ; |                  ~ Modificadores ~                    |
 ; |-------------------------------------------------------|
-(define modificarArchivoIndex
-  (lambda (L eliminar nuevo)
-    (if (esIndex? L)
-        (myAppend (quitarElemento L eliminar) nuevo) 
+(define deleteElemIndex
+  (lambda (L eliminar)
+    (if (index? L)
+        (quitarElemento L eliminar)
+        #f
+        )
+    )
+  )
+
+(define addElemIndex
+  (lambda (L agregar)
+    (if (index? L)
+        (agregarElemento L agregar)
         #f
         )
     )
   )
 
 
+; |-------------------------------------------------------|
+; |------------------ ~ TDA WorkSpace ~ ------------------|
+; |-------------------------------------------------------|
+; |                    ~ Constructor ~                    |
+; |-------------------------------------------------------|
+(define (workSpace . archivo)
+  (if (> (lenLista archivo) 0)
+      (if (esString? archivo)
+          archivo
+          #f
+          )
+      #f
+      )
+  )
+       
+; |-------------------------------------------------------|
+; |                    ~ Pertenencia ~                    |
+; |-------------------------------------------------------|
+(define workSpace?
+  (lambda (L)
+    (if (null? L)
+        #f
+        (if (esString? L)
+            #t
+            #f
+            )
+        )
+    )
+  )
+; |-------------------------------------------------------|
+; |                    ~ Selectores ~                     |
+; |-------------------------------------------------------|
+(define getElemWorkSpace
+  (lambda (L elemento)
+    (if (workSpace? L)
+        (posicionEnLista L elemento)    
+        #f
+        )
+    )
+  )
 
+(define getPosWorkSpace
+  (lambda (L posicion)
+    (if (workSpace? L)
+        (elementoEnLista L posicion)
+        #f
+        )
+    )
+  )
+         
+; |-------------------------------------------------------|
+; |                  ~ Modificadores ~                    |
+; |-------------------------------------------------------|
+(define deleteElemWorkSpace
+  (lambda (L eliminar)
+    (if (workSpace? L)
+        (quitarElemento L eliminar)
+        #f
+        )
+    )
+  )
 
+(define addElemWorkspace
+  (lambda (L agregar)
+    (if (workSpace? L)
+        (agregarElemento L agregar)
+        #f
+        )
+    )
+  )
 
 
 
