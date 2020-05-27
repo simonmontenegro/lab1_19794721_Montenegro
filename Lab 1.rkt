@@ -199,6 +199,22 @@
 ; |                  ~ Modificadores ~                    |
 ; |-------------------------------------------------------|
 
+(define addCommit
+  (lambda (local nuevoCommit)
+    (if (localRepository? local)
+        (agregarComm local nuevoCommit)
+        '()
+        )
+    )
+  )
+
+(define delCommit
+  (lambda (local delCommit)
+    (if (localRepository? local)
+        (eliminarComm local delCommit)
+        )
+    )
+  )
 
 
 
