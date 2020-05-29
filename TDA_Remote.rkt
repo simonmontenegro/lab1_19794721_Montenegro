@@ -41,7 +41,21 @@
         )
     )
   )
+(define getArchivosRemote
+  (lambda (remote)
+    (define getArchivosAux
+      (lambda (remote listaArchivos)
+        (if (null? remote)
+            listaArchivos
+            (getArchivosAux (cdr remote) (myAppend (car(cdr (car remote))) listaArchivos))
+            )
+        )
+      )
+    (getArchivosAux remote '() )
+    )
+  )
 
+    
 (define getPosCommitRemote
   (lambda (remote elemento)
     (if (remoteRepository? remote)
@@ -63,3 +77,5 @@
         )
     )
   )
+
+(define rem (list (list "commit 2" (list "archivo 7" "archivo 8")) (list "commit 3" (list "archivo 9" "archivo 10"))))
