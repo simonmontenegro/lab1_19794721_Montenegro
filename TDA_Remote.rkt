@@ -2,7 +2,7 @@
 (provide (all-defined-out))
 
 (require "Listas.rkt")
-(require "Funciones.rkt")
+(require "TDA_Commit.rkt")
 
 ; (list (list "mensaje" (list "archivo 1" "archivo 2")) ... )
 ; |-------------------------------------------------------|
@@ -48,7 +48,7 @@
       (lambda (remote listaArchivos)
         (if (null? remote)
             listaArchivos
-            (getArchivosAux (cdr remote) (myAppend (car(cdr (car remote))) listaArchivos))
+            (getArchivosAux (cdr remote) (append (car(cdr (car remote))) listaArchivos))
             )
         )
       )
@@ -80,7 +80,7 @@
   )
 
 (define rem (list (list "commit 2" (list "archivo 7" "archivo 8")) (list "commit 3" (list "archivo 9" "archivo 10"))))
-
+(define rem2 (pushCommit rem (list "mensaje1000" (list "archivo1000" "archivo2000"))))
 
 
 ; |-------------------------------------------------------|

@@ -2,7 +2,7 @@
 (provide (all-defined-out))
 
 (require "Listas.rkt")
-(require "Funciones.rkt")
+(require "TDA_Commit.rkt")
 
 ; |-------------------------------------------------------|
 ; |-------------------- ~ TDA Index ~ --------------------|

@@ -1,7 +1,7 @@
 #lang racket
 
 (require "Listas.rkt")
-(require "Funciones.rkt")
+(require "TDA_Commit.rkt")
 (require "TDA_Index.rkt")
 (require "TDA_WorkSpace.rkt")
 (require "TDA_Local.rkt")
@@ -54,7 +54,7 @@
                 )
           (if (equal? (listaArchivosInWorkSpace? (car zonas) archivos) #t)
               (list (getWorkSpace zonas)
-                    (append archivos (getIndex zonas))
+                    (append (getIndex zonas) archivos)
                     (getLocalRepository zonas)
                     (getRemoteRepository zonas)
                     (agregarComando "ADD" (getHistorial zonas))
@@ -115,7 +115,6 @@
 (define zonas4 (((git commit)"mi primer commit")zonas3))
 (define zonas5 ((git push)zonas4))
 
-;(string-append "string 1 " "string 2")
 
 
 

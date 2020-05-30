@@ -3,6 +3,10 @@
 (provide (all-defined-out))
 
 
+;Descripcion: Funcion que retorna el largo de una lista de elementos
+;Dominio: Lista
+;Recorrido: Entero (cantidad de elementos de la lista)
+;Recursion: Cola
 (define lenLista
   (lambda (Lista)
     (define largo
@@ -17,6 +21,10 @@
     )
   )
 
+;Descripcion: Funcion que verifica si cada elemento de una lista es String
+;Dominio: Lista
+;Recorrido: Booleano
+;Recursion: Natural
 (define esString?
   (lambda (Lista)
     (if (null? Lista)
@@ -29,6 +37,10 @@
     )
   )
 
+;Descripcion: Funcion que retorna un elemento en una posicion determinada
+;Dominio: Lista, Entero (posicion del elemento)
+;Recorrido: Elemento
+;Recursion: Cola
 (define posicionEnLista
   (lambda (Lista elemento)
     (define posicionEnListaAux
@@ -46,6 +58,10 @@
     )
   )
 
+;Descripcion: Funcion que retorna la posicion de un elemento en una lista
+;Dominio: Lista, Elemento
+;Recorrido: Entero (posicion del elemento)
+;Recursion: Cola
 (define elementoEnLista
   (lambda (L posicion)
     (define elementoEnListaAux
@@ -63,18 +79,23 @@
     )
   )
 
-(define myAppend
-  (lambda(L1 L2)
-    (if (null? L1)
-        L2
-        (if (null? L2)
-            L1
-            (cons (car L1) (myAppend (cdr L1) L2))
-            )
+;Descripcion: Funcion que agrega un elemento a una lista
+;Dominio: Lista, Elemento
+;Recorrido: Lista
+;Recursion: No aplica
+(define agregarElemento
+  (lambda (L agregar)
+    (if (null? L)
+        (list agregar)
+        (append L (list agregar))
         )
     )
   )
 
+;Descripcion: Funcion que elimina un elemento de una lista
+;Dominio: Lista, Elemento
+;Recorrido: Lista
+;Recursion: Cola
 (define quitarElemento
   (lambda (L quitar)
     (define quitarElementoAux
@@ -83,7 +104,7 @@
           Lnueva
           (if (equal? (car L) quitar)
               (quitarElementoAux (cdr L) quitar Lnueva)
-              (quitarElementoAux (cdr L) quitar (cons (car L) Lnueva) )
+              (quitarElementoAux (cdr L) quitar (agregarElemento Lnueva (car L)))
               ) 
           )
         )
@@ -92,39 +113,11 @@
       )
     )
 
-(define agregarElemento
-  (lambda (L agregar)
-    (define agregarElementoAux
-      (lambda (L agregar L2)
-        (if (null? L)
-          (cons agregar L2)
-          (agregarElementoAux (cdr L) agregar (cons (car L) L2))
-          )
-        )
-      )
-    (agregarElementoAux L agregar '( ))
-  )
-)
 
 
 
-;invertirLista: funcion que invierte una lista
-;dom: lista
-;rec: lista
-;recursion: de cola (no deja estados pendientes)
-(define invertirLista
-  (lambda (L1)
-    (define invertirAux
-      (lambda (L1 L2)
-        (if (null? L1)
-            L2
-            (invertirAux (cdr L1) (list (car L1) L2))
-            )
-        )
-      )
-    (invertirAux L1 '())
-    )
-  )
+
+
 
 
 

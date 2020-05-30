@@ -2,7 +2,7 @@
 (provide (all-defined-out))
 
 (require "Listas.rkt")
-(require "Funciones.rkt")
+(require "TDA_Commit.rkt")
 
 
 ; |-------------------------------------------------------|
@@ -10,6 +10,10 @@
 ; |-------------------------------------------------------|
 ; |                    ~ Constructor ~                    |
 ; |-------------------------------------------------------|
+;Descripcion: Funcion constructora de un "WorkSpace"
+;Dominio: String, ... , String
+;Recorrido: Lista (de strings)
+;Recursion: No aplica
 (define (workSpace . archivo)
   (if (> (lenLista archivo) 0)
       (if (esString? archivo)

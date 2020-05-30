@@ -8,6 +8,10 @@
 ; |-------------------------------------------------------|
 ; |                    ~ Constructor ~                    |
 ; |-------------------------------------------------------|
+;Descripcion: Funcion constructora de un "commit"
+;Dominio: String, Lista (Lista de strings)
+;Recorrido: Lista
+;Recursion: No aplica
 (define commit
   (lambda (mensaje archivos)
     (if (and (esString? archivos) (string? mensaje))
@@ -98,16 +102,14 @@
   )
 
 (define agregarComm
-  (lambda (local commit)
-    (define agregarCommAux
-      (lambda (local commit nuevoLocal)
-        (if (null? local)
-            (cons commit nuevoLocal)
-            (agregarCommAux (cdr local) commit (cons (car local) nuevoLocal))
+  (lambda (repos commit)
+    (if (commit? commit)
+        (if (null? repos)
+            (list (list commit))
+            (append  (list commit) repos)
             )
+        #f
         )
-      )
-    (agregarCommAux local commit '())
     )
   )
 
