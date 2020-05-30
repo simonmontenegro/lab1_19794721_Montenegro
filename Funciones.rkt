@@ -1,7 +1,7 @@
 #lang racket
-(provide (all-defined-out))
 
 (require "Listas.rkt")
+(provide (all-defined-out))
 
 (define esCommit?
   (lambda (commit)
@@ -93,7 +93,7 @@
     (getStringArchivosCommitAux listaCommits " ")
     )
   )
-      
+
 ;(define com (list (list "mensaje1" '("uno" "dos")) (list "mensaje2" '("tres" "cuatro"))))
 ;(esCommit? (list (list "mensaje1" (list "uno" "dos")) (list "mensaje2" (list "tres" "cuatro"))))
 

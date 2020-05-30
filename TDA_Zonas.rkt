@@ -70,8 +70,8 @@
 ; |-------------------------------------------------------|
 (define historialZonas
   (lambda (zonas comando)
-    (list (car zonas) (car (cdr zonas)) (car (cdr (cdr zonas))) (car (cdr (cdr (cdr zonas))))
-          (agregarComando comando (car (cdr (cdr (cdr (cdr zonas)))))) )
+    (list (getWorkSpace zonas) (getIndex zonas) (getLocalRepository zonas) (getRemoteRepository zonas)
+          (agregarComando comando (getHistorial zonas)) )
     )
   )
     
