@@ -4,8 +4,6 @@
 (require "Listas.rkt")
 (require "Funciones.rkt")
 
-
-; (list (list "mensaje" (list "archivo 1" "archivo 2")) ... )
 ; |-------------------------------------------------------|
 ; |--------------- ~ TDA LocalRepository ~ ---------------|
 ; |-------------------------------------------------------|
@@ -74,28 +72,3 @@
         )
     )
   )
-
-
-; |-------------------------------------------------------|
-; |                      ~ Otros ~                        |
-; |-------------------------------------------------------|
-
-; (list (list "mensaje" (list "archivo 1" "archivo 2")) ... )
-(define getStringDeLocal
-  (lambda (local)
-    (define getStringDeLocalAux
-      (lambda (local string)
-        (if (null? local)
-            string
-            (getStringDeLocalAux (cdr local) (string-append string (getStringArchivosCommit (car (cdr (car local)))) "-> " (car (car local)) "\n\n" ))
-            )
-        )
-      )
-    (getStringDeLocalAux local "\n\n\n~Local Repository~\n")
-    )
-  )
-
-
-  
-
-(define local (localRepository (list (list "mensaje1" (list "archivo1" "archivo2")) (list "mensaje2" (list "archivo3" "archivo4" "archivo5"))))) 

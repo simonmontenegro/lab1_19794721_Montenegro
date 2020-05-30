@@ -79,6 +79,20 @@
     (eliminarCommAux local elem '())
     )
   )
+
+(define getStringArchivosCommit
+  (lambda (listaCommits)
+    (define getStringArchivosCommitAux
+      (lambda (listaCommits string)
+        (if (null? listaCommits)
+            string
+            (getStringArchivosCommitAux (cdr listaCommits) (string-append string (car listaCommits) "; "))
+            )
+        )
+      )
+    (getStringArchivosCommitAux listaCommits " ")
+    )
+  )
       
 ;(define com (list (list "mensaje1" '("uno" "dos")) (list "mensaje2" '("tres" "cuatro"))))
 ;(esCommit? (list (list "mensaje1" (list "uno" "dos")) (list "mensaje2" (list "tres" "cuatro"))))

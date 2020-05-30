@@ -76,4 +76,48 @@
     )
   )
 
+; |-------------------------------------------------------|
+; |                      ~ Otros ~                        |
+; |-------------------------------------------------------|
+
+(define archivoInWorkSpace?
+  (lambda (workspace archivo)
+      (if (null? workspace)
+          #f
+          (if (equal? (car workspace) archivo)
+              #t
+              (archivoInWorkSpace? (cdr workspace) archivo)
+              )
+          )
+    )
+  )
+
+(define listaArchivosInWorkSpace?
+  (lambda (workspace lista)
+    (if (null? lista)
+        #t
+        (if (equal? (archivoInWorkSpace? workspace (car lista)) #t)
+            (listaArchivosInWorkSpace? workspace (cdr lista))
+            #f
+            )
+        )
+    )
+  )
+
+(define getStringDeWorkSpace
+  (lambda (workspace)
+    (define getStringDeWorkSpaceAux
+      (lambda (workspace string)
+        (if (null? workspace)
+            string
+            (getStringDeWorkSpaceAux (cdr workspace) (string-append string (car workspace) "\n"))
+            )
+        )
+      )
+    (getStringDeWorkSpaceAux workspace "\n\n\n~WorkSpace~\n")
+    )
+  )
+
+(define work (workSpace "archivo1" "archivo2" "archivo3" "archivo4"))
+          
 

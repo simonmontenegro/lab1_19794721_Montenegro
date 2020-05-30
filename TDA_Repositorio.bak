@@ -1,9 +1,0 @@
-#lang racket
-(require "Listas.rkt")
-(require "Funciones.rkt")
-(require "TDA_Index.rkt")
-(require "TDA_WorkSpace.rkt")
-(require "TDA_Local.rkt")
-(require "TDA_Remote.rkt")
-
-(provide (all-defined-out))

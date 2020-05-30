@@ -10,7 +10,7 @@
 (provide (all-defined-out))
 
 ; |-------------------------------------------------------|
-; |---------------- ~ TDA Repositorio ~ ------------------|
+; |------------------- ~ TDA Zonas ~ ---------------------|
 ; |-------------------------------------------------------|
 ; |                    ~ Constructor ~                    |
 ; |-------------------------------------------------------|
@@ -59,6 +59,12 @@
     )
   )
 
+(define getHistorial
+  (lambda (Zonas)
+    (car (cdr (cdr (cdr (cdr Zonas)))))
+    )
+  )
+
 ; |-------------------------------------------------------|
 ; |                   ~ Modificador ~                     |
 ; |-------------------------------------------------------|
@@ -72,3 +78,24 @@
 
 (define zon (Zonas (list "archivo 1" "archivo 2") (list "archivo 3" "archivo 4")
                          (list (list "commit 1" (list "archivo 5" "archivo 6"))) (list (list "commit 2" (list "archivo 7" "archivo 8"))) )  )
+
+
+; |-------------------------------------------------------|
+; |                      ~ Otros ~                        |
+; |-------------------------------------------------------|
+
+(define getStringDeHistorial
+  (lambda (historial)
+    (define getStringDeHistorialAux
+      (lambda (historial string)
+        (if (null? historial)
+            string
+            (getStringDeHistorialAux (cdr historial) (string-append string (car (car historial)) "  " (car(cdr (car historial))) "\n"))
+            )
+        )
+      )
+    (getStringDeHistorialAux historial "\n\n\n~Historial~\n")
+    )
+  )
+
+(define histo (list (list "ADD" "Friday, May 29th, 2020 9:52:15pm") (list "PULL" "Friday, May 29th, 2020 9:52:09pm")))

@@ -74,3 +74,23 @@
         )
     )
   )
+
+; |-------------------------------------------------------|
+; |                      ~ Otros ~                        |
+; |-------------------------------------------------------|
+
+(define getStringDeIndex
+  (lambda (index)
+    (define getStringDeIndexAux
+      (lambda (index string)
+        (if (null? index)
+            string
+            (getStringDeIndexAux (cdr index) (string-append string (car index) "\n"))
+            )
+        )
+      )
+    (getStringDeIndexAux index "\n\n\n~Index~\n")
+    )
+  )
+
+(define ind (index "archivo1" "archivo2" "archivo3" "archivo4"))

@@ -4,6 +4,7 @@
 (require "Listas.rkt")
 (require "Funciones.rkt")
 
+; (list (list "mensaje" (list "archivo 1" "archivo 2")) ... )
 ; |-------------------------------------------------------|
 ; |-------------- ~ TDA RemoteRepository ~ ---------------|
 ; |-------------------------------------------------------|
@@ -79,3 +80,29 @@
   )
 
 (define rem (list (list "commit 2" (list "archivo 7" "archivo 8")) (list "commit 3" (list "archivo 9" "archivo 10"))))
+
+
+
+; |-------------------------------------------------------|
+; |                      ~ Otros ~                        |
+; |-------------------------------------------------------|
+
+; (list (list "mensaje" (list "archivo 1" "archivo 2")) ... )
+(define getStringDeRemote
+  (lambda (remote)
+    (define getStringDeRemoteAux
+      (lambda (remote string)
+        (if (null? remote)
+            string
+            (getStringDeRemoteAux (cdr remote) (string-append string (getStringArchivosCommit (car (cdr (car remote)))) "-> " (car (car remote)) "\n\n" ))
+            )
+        )
+      )
+    (getStringDeRemoteAux remote "\n\n\n~Remote Repository~\n")
+    )
+  )
+
+
+  
+
+(define remote (remoteRepository (list (list "mensaje1" (list "archivo1" "archivo2")) (list "mensaje2" (list "archivo3" "archivo4" "archivo5"))))) 
