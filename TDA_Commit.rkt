@@ -14,7 +14,7 @@
 ;Recursion: No aplica
 (define commit
   (lambda (mensaje archivos)
-    (if (and (esString? archivos) (string? mensaje))
+    (if (and (string? mensaje) (esString? archivos) )
         (list mensaje archivos)
         #f
         )
@@ -24,6 +24,10 @@
 ; |-------------------------------------------------------|
 ; |                    ~ Pertenencia ~                    |
 ; |-------------------------------------------------------|
+;Descripcion: Funcion que verifica que un commit efectivamente sea un commit
+;Dominio: commit
+;Recorrido: booleano
+;Recursion: No aplica
 (define commit?
   (lambda (com)
     (and (list? com) (not (equal? (commit (car com) (car(cdr com))) #f)))
@@ -33,16 +37,29 @@
 ; |-------------------------------------------------------|
 ; |                    ~ Selectores ~                     |
 ; |-------------------------------------------------------|
+;Descripcion: Funcion que retorna el mensaje asociado a un commit
+;Dominio: commit
+;Recorrido: String
+;Recursion: No aplica
 (define getMensajeCommit
   (lambda (commit)
-    (car commit)
+    (if (commit? commit)
+        (car commit)
+        #f
+        )
     )
   )
 
+;Descripcion: Funcion que retorna la lista de archivos asociada a un commit
+;Dominio: commit
+;Recorrido: Lista
+;Recursion: No aplica
 (define getArchivosCommit
   (lambda (commit)
-    (car (cdr commit)
-         )
+    (if (commit? commit)
+        (car (cdr commit))
+        #f
+        )
     )
   )
 
@@ -67,6 +84,10 @@
     )
   )
 
+;Descripcion: Funcion que retorna un commit en determinada posicion de una lista de commits
+;Dominio: Lista (de commits)
+;Recorrido: commit
+;Recursion: Cola
 (define elementoCommit
   (lambda (listaCommits posicion)
     (define elementoAux
@@ -80,10 +101,17 @@
             )
         )
       )
-    (elementoAux listaCommits posicion 1)
+    (if (esCommit? listaCommits)
+        (elementoAux listaCommits posicion 1)
+        #f
+        )
     )
   )
 
+;Descripcion: Funcion que retorna la posicion de un commit en una lista de commits
+;Dominio: Lista (de commits)
+;Recorrido: Entero
+;Recursion: Cola
 (define posCommit
   (lambda (listaCommit elemento)
     (define posAux
@@ -97,10 +125,17 @@
             )
         )
       )
-    (posAux listaCommit elemento 1)
+    (if (esCommit? listaCommit)
+        (posAux listaCommit elemento 1)
+        #f
+        )
     )
   )
 
+;Descripcion: Funcion que agrega un commit a una lista de commits
+;Dominio: Lista (de commits), commit
+;Recorrido: Lista (de commits)
+;Recursion: No aplica
 (define agregarComm
   (lambda (repos commit)
     (if (commit? commit)
@@ -113,6 +148,10 @@
     )
   )
 
+;Descripcion: Funcion que elimina un commit de una lista de commits
+;Dominio: Lista (de commits), commit
+;Recorrido: Lista (de commits)
+;Recursion: Cola
 (define eliminarComm
   (lambda (local elem)
     (define eliminarCommAux
@@ -130,6 +169,10 @@
     )
   )
 
+;Descripcion: Funcion que representa una lista de commits en formato string
+;Dominio: Lista (de commits)
+;Recorrido: String
+;Recursion: Cola
 (define getStringArchivosCommit
   (lambda (listaCommits)
     (define getStringArchivosCommitAux

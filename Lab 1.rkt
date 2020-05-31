@@ -23,7 +23,13 @@
                 commit
                 (if (equal? comando push)
                     push
-                    #f
+                    (if (equal? comando "status")
+                        "status"
+                        (if (equal? comando "log")
+                            "log"
+                            "error"
+                            )
+                        )
                     )
                 )
             )
@@ -74,7 +80,7 @@
           (list
            (getWorkSpace zonas)
            (getIndex zonas)
-           (append (getLocalRepository zonas) (list (list mensaje (getIndex zonas))))
+           (append (list (list mensaje (getIndex zonas))) (getLocalRepository zonas))
            (getRemoteRepository zonas)
            (agregarComando "COMMIT" (getHistorial zonas))
            )
@@ -89,7 +95,7 @@
     (list (getWorkSpace zonas)
           (getIndex zonas)
           (getLocalRepository zonas)
-          (append (getLocalRepository zonas) (getRemoteRepository zonas) )
+          (append (getRemoteRepository zonas) (getLocalRepository zonas))
           (agregarComando "PUSH" (getHistorial zonas))
           )
     )
@@ -104,12 +110,45 @@
     )
   )
 
-(define zonas1 (Zonas (list "archivo 1" "archivo 2")
-                      (list "archivo 3" "archivo 4")
+(define status
+  (lambda (zonas)
+    (string-append (getStringDeIndex (getIndex zonas)) "\nCantidad de Commits en Repositorio Local: "
+                   (number->string (lenLista (getWorkSpace zonas))) "\nRama Actual: Master")
+    )
+  )
+
+(define log
+  (lambda (zonas)
+    (define logAux
+      (lambda (localRepository voyEn string)
+        (if (or (equal? voyEn 5) (null? (cdr localRepository)))
+            (string-append string "\n-> " (getMensajeCommit (car localRepository)) )
+            (logAux (cdr localRepository) (+ voyEn 1) (string-append string "\n-> " (getMensajeCommit (car localRepository))))
+            )
+        )
+      )
+    (logAux (getLocalRepository zonas) 1 "Ultimos commits: \n")
+    )
+  )
+
+
+
+        
+
+(define zonas1 (Zonas (WorkSpace "archivo 1" "archivo 2")
+                      (index "archivo 3" "archivo 4")
                       (list (list "commit 1" (list "archivo 5" "archivo 6")))
                       (list (list "commit 2" (list "archivo 7" "archivo 8")))
                       )
   )
+
+(define commit2(((git commit)"mi segundo commit")zonas1))
+(define commit3(((git commit)"mi tercer commit")commit2))
+(define commit4(((git commit)"mi cuarto commit")commit3))
+(define commit5(((git commit)"mi quinto commit")commit4))
+(define commit6(((git commit)"mi sexto commit")commit5))
+(define commit7(((git commit)"mi septimo commit")commit6))
+(define commit8(((git commit)"mi octavo commit")commit7))
 (define zonas2 ((git pull)zonas1))
 (define zonas3 (((git add)'())zonas2))
 (define zonas4 (((git commit)"mi primer commit")zonas3))

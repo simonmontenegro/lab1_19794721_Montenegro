@@ -11,11 +11,15 @@
 ; |-------------------------------------------------------|
 ; |                    ~ Constructor ~                    |
 ; |-------------------------------------------------------|
+;Descripcion: Funcion que constructora de un localRepository
+;Dominio: Lista (de commits)
+;Recorrido: Lista (de commits)
+;Recursion: No aplica
 (define localRepository
-  (lambda (commit)
-    (if (> (lenLista commit) 0)
-      (if (esCommit? commit)
-          commit
+  (lambda (listaCommits)
+    (if (> (lenLista listaCommits) 0)
+      (if (esCommit? listaCommits)
+          listaCommits
           '()
           )
       #f
@@ -26,6 +30,10 @@
 ; |-------------------------------------------------------|
 ; |                    ~ Pertenencia ~                    |
 ; |-------------------------------------------------------|
+;Descripcion: Funcion que verifica si un LocalRepository es efectivamente un LocalRepository
+;Dominio: LocalRepository
+;Recorrido: Booleano
+;Recursion: No aplica
 (define localRepository?
   (lambda (local)
     (and (not (null? local)) (esCommit? local))
@@ -35,6 +43,10 @@
 ; |-------------------------------------------------------|
 ; |                    ~ Selectores ~                     |
 ; |-------------------------------------------------------|
+;Descripcion: Funcion que retorna un commit en determinada posicion en el LocalRepository
+;Dominio: LocalRepository, Entero
+;Recorrido: commit
+;Recursion: No aplica
 (define getElemCommit
   (lambda (local pos)
     (if (localRepository? local)
@@ -44,6 +56,10 @@
     )
   )
 
+;Descripcion: Funcion que retorna la posicion de determinado commit en el LocalRepository 
+;Dominio: LocalRepository, commit
+;Recorrido: Entero
+;Recursion: No aplica
 (define getPosCommit
   (lambda (local elemento)
     (if (localRepository? local)
@@ -56,7 +72,10 @@
 ; |-------------------------------------------------------|
 ; |                  ~ Modificadores ~                    |
 ; |-------------------------------------------------------|
-
+;Descripcion: Funcion que añade un commit al LocalRepository
+;Dominio: LocalRepository, commit
+;Recorrido: LocalRepository
+;Recursion: No aplica
 (define addCommit
   (lambda (local nuevoCommit)
     (if (localRepository? local)
@@ -66,6 +85,10 @@
     )
   )
 
+;Descripcion: Funcion que elimina un commit del LocalRepository
+;Dominio: LocalRepository, commit
+;Recorrido: LocalRepository
+;Recursion: No aplica
 (define delCommit
   (lambda (local delCommit)
     (if (localRepository? local)
@@ -79,8 +102,10 @@
 ; |-------------------------------------------------------|
 ; |                      ~ Otros ~                        |
 ; |-------------------------------------------------------|
-
-; (list (list "mensaje" (list "archivo 1" "archivo 2")) ... )
+;Descripcion: Funcion que representa el LocalRepository en formato string
+;Dominio: LocalRepository
+;Recorrido: String
+;Recursion: Cola
 (define getStringDeLocal
   (lambda (local)
     (define getStringDeLocalAux
