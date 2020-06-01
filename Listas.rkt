@@ -27,12 +27,15 @@
 ;Recursion: Natural
 (define esString?
   (lambda (Lista)
-    (if (null? Lista)
-        #t
-        (if (string? (car Lista))
-            (esString? (cdr Lista))
-            #f
+    (if (list? Lista)
+        (if (null? Lista)
+            #t
+            (if (string? (car Lista))
+                (esString? (cdr Lista))
+                #f
+                )
             )
+        #f
         )
     )
   )
@@ -79,39 +82,6 @@
     )
   )
 
-;Descripcion: Funcion que agrega un elemento a una lista
-;Dominio: Lista, Elemento
-;Recorrido: Lista
-;Recursion: No aplica
-(define agregarElemento
-  (lambda (L agregar)
-    (if (null? L)
-        (list agregar)
-        (append L (list agregar))
-        )
-    )
-  )
-
-;Descripcion: Funcion que elimina un elemento de una lista
-;Dominio: Lista, Elemento
-;Recorrido: Lista
-;Recursion: Cola
-(define quitarElemento
-  (lambda (L quitar)
-    (define quitarElementoAux
-      (lambda (L quitar Lnueva)
-        (if (null? L)
-          Lnueva
-          (if (equal? (car L) quitar)
-              (quitarElementoAux (cdr L) quitar Lnueva)
-              (quitarElementoAux (cdr L) quitar (agregarElemento Lnueva (car L)))
-              ) 
-          )
-        )
-      )
-    (quitarElementoAux L quitar '( ) )
-      )
-    )
 
 
 

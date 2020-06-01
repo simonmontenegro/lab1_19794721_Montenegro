@@ -109,9 +109,6 @@
   )
     
 
-(define zon (Zonas (list "archivo 1" "archivo 2") (list "archivo 3" "archivo 4")
-                         (list (list "commit 1" (list "archivo 5" "archivo 6"))) (list (list "commit 2" (list "archivo 7" "archivo 8"))) )  )
-
 
 ; |-------------------------------------------------------|
 ; |                      ~ Otros ~                        |
@@ -133,5 +130,3 @@
     (getStringDeHistorialAux historial "\n\n\n~Historial~\n")
     )
   )
-
-(define histo (list (list "ADD" "Friday, May 29th, 2020 9:52:15pm") (list "PULL" "Friday, May 29th, 2020 9:52:09pm")))

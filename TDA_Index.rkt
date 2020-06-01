@@ -69,35 +69,6 @@
         )
     )
   )
-         
-; |-------------------------------------------------------|
-; |                  ~ Modificadores ~                    |
-; |-------------------------------------------------------|
-;Descripcion: Funcion que elimina un archivo de un index
-;Dominio: Index, String (archivo)
-;Recorrido: Index
-;Recursion: No aplica
-(define deleteElemIndex
-  (lambda (index eliminar)
-    (if (index? index)
-        (quitarElemento index eliminar)
-        #f
-        )
-    )
-  )
-
-;Descripcion: Funcion que añade un archivo a un index
-;Dominio: Index, String (archivo)
-;Recorrido: Index
-;Recursion: No aplica
-(define addElemIndex
-  (lambda (index agregar)
-    (if (index? index)
-        (agregarElemento index agregar)
-        #f
-        )
-    )
-  )
 
 ; |-------------------------------------------------------|
 ; |                      ~ Otros ~                        |
@@ -119,5 +90,3 @@
     (getStringDeIndexAux index "\n\n\n~Index~\n")
     )
   )
-
-(define ind (index "archivo1" "archivo2" "archivo3" "archivo4"))

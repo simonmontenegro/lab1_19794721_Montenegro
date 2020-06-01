@@ -12,9 +12,9 @@
 ;Dominio: String, Lista (Lista de strings)
 ;Recorrido: Lista
 ;Recursion: No aplica
-(define commit
+(define TDAcommit
   (lambda (mensaje archivos)
-    (if (and (string? mensaje) (esString? archivos) )
+    (if (and (string? mensaje) (esString? archivos) (and (not (null? archivos))))
         (list mensaje archivos)
         #f
         )
@@ -30,7 +30,7 @@
 ;Recursion: No aplica
 (define commit?
   (lambda (com)
-    (and (list? com) (not (equal? (commit (car com) (car(cdr com))) #f)))
+    (and (list? com) (not (equal? (TDAcommit (car com) (car(cdr com))) #f)))
     )
   )
 
@@ -66,8 +66,6 @@
 ; |-------------------------------------------------------|
 ; |                       ~ Otros ~                       |
 ; |-------------------------------------------------------|
-
-
 ;Descripcion: Funcion que verifica si los elementos de una lista son commit
 ;Dominio: Lista
 ;Recorrido: Booleano

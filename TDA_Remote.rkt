@@ -4,7 +4,6 @@
 (require "Listas.rkt")
 (require "TDA_Commit.rkt")
 
-; (list (list "mensaje" (list "archivo 1" "archivo 2")) ... )
 ; |-------------------------------------------------------|
 ; |-------------- ~ TDA RemoteRepository ~ ---------------|
 ; |-------------------------------------------------------|
@@ -19,7 +18,7 @@
     (if (> (lenLista commit) 0)
       (if (esCommit? commit)
           commit
-          '()
+          #f
           )
       #f
       )
@@ -124,8 +123,3 @@
     )
   )
 
-
-  
-(define rem (list (list "commit 2" (list "archivo 7" "archivo 8")) (list "commit 3" (list "archivo 9" "archivo 10"))))
-(define rem2 (pushCommit rem (list "mensaje1000" (list "archivo1000" "archivo2000"))))
-(define remote (remoteRepository (list (list "mensaje1" (list "archivo1" "archivo2")) (list "mensaje2" (list "archivo3" "archivo4" "archivo5"))))) 

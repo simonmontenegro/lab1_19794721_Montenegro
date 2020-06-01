@@ -4,8 +4,6 @@
 (require "Listas.rkt")
 (require "TDA_Commit.rkt")
 
-
-; (list (list "mensaje" (list "archivo 1" "archivo 2")) ... )
 ; |-------------------------------------------------------|
 ; |--------------- ~ TDA LocalRepository ~ ---------------|
 ; |-------------------------------------------------------|
@@ -20,7 +18,7 @@
     (if (> (lenLista listaCommits) 0)
       (if (esCommit? listaCommits)
           listaCommits
-          '()
+          #f
           )
       #f
       )
@@ -120,7 +118,4 @@
     )
   )
 
-
-  
-
-(define local (localRepository (list (list "mensaje1" (list "archivo1" "archivo2")) (list "mensaje2" (list "archivo3" "archivo4" "archivo5"))))) 
+ 

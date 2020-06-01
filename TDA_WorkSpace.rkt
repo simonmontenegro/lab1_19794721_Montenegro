@@ -33,12 +33,15 @@
 ;Recursion: No aplica
 (define workSpace?
   (lambda (L)
-    (if (null? L)
-        #f
-        (if (esString? L)
-            #t
+    (if (list? L)
+        (if (null? L)
             #f
+            (if (esString? L)
+                #t
+                #f
+                )
             )
+        #f
         )
     )
   )
@@ -66,35 +69,6 @@
   (lambda (workspace posicion)
     (if (workSpace? workspace)
         (elementoEnLista workspace posicion)
-        #f
-        )
-    )
-  )
-         
-; |-------------------------------------------------------|
-; |                  ~ Modificadores ~                    |
-; |-------------------------------------------------------|
-;Descripcion: Funcion que elimina un determinado archivo del WorkSpace
-;Dominio: WorkSpace, String (archivo)
-;Recorrido: WorkSpace
-;Recursion: No aplica
-(define deleteElemWorkSpace
-  (lambda (workspace eliminar)
-    (if (workSpace? workspace)
-        (quitarElemento workspace eliminar)
-        #f
-        )
-    )
-  )
-
-;Descripcion: Funcion que agrega un archivo al WorkSpace
-;Dominio: WorkSpace, String (archivo)
-;Recorrido: WorkSpace
-;Recursion: No aplica
-(define addElemWorkSpace
-  (lambda (workspace agregar)
-    (if (workSpace? workspace)
-        (agregarElemento workspace agregar)
         #f
         )
     )
@@ -154,6 +128,5 @@
     )
   )
 
-(define work (WorkSpace "archivo1" "archivo2" "archivo3" "archivo4"))
           
 
